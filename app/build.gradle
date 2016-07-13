@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+    defaultConfig {
+        applicationId "dagger.sample.superdry.org.daggersample"
+        minSdkVersion 21
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "dagger.sample.superdry.org.daggersample.MockTestRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    DAGGER_VERSION ='2.4'
+    JUNIT_VERSION = '4.12'
+    RUNNER_VERSION = '0.5'
+    DEXMAKER_VERSION = '1.2'
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
+    // Dagger2
+    compile "com.google.dagger:dagger:$DAGGER_VERSION"
+    apt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+
+    testCompile "junit:junit:$JUNIT_VERSION"
+    // Test Support Library
+    androidTestCompile "com.android.support.test:runner:$RUNNER_VERSION"
+    androidTestCompile "com.android.support.test:rules:$RUNNER_VERSION"
+    androidTestCompile 'com.android.support:support-annotations:24.0.0'
+    // Espresso2
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    // Mockito
+    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    androidTestCompile "com.google.dexmaker:dexmaker:$DEXMAKER_VERSION"
+    androidTestCompile "com.google.dexmaker:dexmaker-mockito:$DEXMAKER_VERSION"
+    // Dagger2
+    androidTestApt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+}
